@@ -4,7 +4,6 @@ class Employees {
     position: string;
     lead: Leads | null = null;
 
-
     constructor(id: number, name: string, position: string) {
         this.id = id;
         this.name = name;
@@ -34,7 +33,6 @@ class Leads extends Employees {
     }
 }
 
-
 function printLeadStatus(employees: Employees[]): void {
     employees.forEach(employee => {
         if (employee instanceof Leads) {
@@ -56,7 +54,6 @@ const leads2 = new Leads(2841, "Karthik", "Senior Team Leads");
 const empl1 = new Employees(2843, "Charan", "Developer");
 const empl2 = new Employees(2844, "Shiva", "Designer");
 const empl3 = new Employees(2845, "Srivani", "Antenna Designer");
-
 
 leads1.addEmployee(empl1);
 leads2.addEmployee(leads1);
