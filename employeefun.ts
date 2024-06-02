@@ -2,6 +2,8 @@ class Employees {
     id: number;
     name: string;
     position: string;
+    lead: Leads | null = null;
+
 
     constructor(id: number, name: string, position: string) {
         this.id = id;
@@ -23,6 +25,7 @@ class Leads extends Employees {
     }
 
     addEmployee(employee: Employees): void {
+        employee.lead = this;
         this.team.push(employee);
     }
 
@@ -41,18 +44,25 @@ function printLeadStatus(employees: Employees[]): void {
         }
     });
 }
-
+function isLead(employeee: Employees): boolean {
+    if (employee instanceof Leads) {
+        return false;
+    }
+    return employee.lead !== null;
+}
 
 const leads1 = new Leads(2840, "Bhavani", "Team Leads");
 const leads2 = new Leads(2841, "Karthik", "Senior Team Leads");
-
 const empl1 = new Employees(2843, "Charan", "Developer");
 const empl2 = new Employees(2844, "Shiva", "Designer");
+const empl3 = new Employees(2845, "Srivani", "Antenna Designer");
+
 
 leads1.addEmployee(empl1);
+leads2.addEmployee(leads1);
 leads2.addEmployee(empl2);
+leads2.addEmployee(empl3);
 
-
-const employees: Employees[] = [leads1, empl1, leads2, empl2];
+const employees: Employees[] = [leads1, empl1, leads2, empl2, empl3];
 
 printLeadStatus(employees);
