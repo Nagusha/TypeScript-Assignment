@@ -7,7 +7,7 @@ type OriginalType = {
   };
   
   type RequiredType = {
-    [P in keyof OriginalType]: OriginalType[P];
+    [P in keyof OriginalType]-?: OriginalType[P];
   };
   
   function printRequiredType(obj: RequiredType) {
