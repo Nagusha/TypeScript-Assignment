@@ -21,7 +21,7 @@ const employees = [
     },
   ];
   
-  function isLead(employeeName: string, employees: any[]): boolean {
+  function isLead(employeeName, employees) {
     for (const emp of employees) {
       if (emp.lead && emp.lead.name === employeeName) {
         return true;
@@ -32,10 +32,18 @@ const employees = [
     }
     return false;
   }
-  
-  const testEmployees = ["Srivani", "Bhavani", "Manisha", "Keerthana", "Sai meghana"];
-  
-  testEmployees.forEach(emp => {
+function extractNames(employees) {
+    let names = [];
+    for (const emp of employees) {
+        names.push(emp.name);
+        if (emp.lead) {
+            names = names.concat(extractNames([emp.lead]));
+        }
+    }
+    return names;
+}
+const employeeNames = extractNames(employees);
+  employeeNames.forEach(emp => {
     console.log(`Is ${emp} a lead? ${isLead(emp, employees)}`);
   });
 
